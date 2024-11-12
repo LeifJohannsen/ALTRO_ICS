@@ -1,0 +1,79 @@
+managed implementation in class zbp_i_ics_features unique;
+strict;
+with draft;
+
+define behavior for ZI_ICS_FEATURES alias feature
+persistent table zdb_feature_head
+draft table zdb_feature_h_d
+lock master
+total etag last_changed_at
+etag master last_changed_at
+authorization master ( instance )
+{
+  create;
+  update ( features : instance );
+  delete ( features : instance );
+  field ( readonly, numbering : managed  ) Id;
+  field ( readonly : update ) FeatureID;
+  field ( mandatory ) Destinationid, Executiontype;
+  // administrative fields (read only)
+  field ( readonly ) created_at, created_by, last_changed_at, last_changed_by;
+
+  draft action ( features : instance ) Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
+  determination setDefaultValues on modify { create; }
+
+  factory action ( features : instance ) delimitEntry parameter ZA_ICS_DELIMIT_ENTRY [1] ;
+
+  validation validateDates on save { field validfrom, validto; }
+
+  association _Text { create; with draft; }
+  association _Expression { create ; with draft; }
+}
+
+define behavior for ZI_ICS_FEATURES_TEXT alias Text
+authorization dependent by _Feature
+lock dependent by _Feature
+persistent table zdb_feature_text
+draft table zdb_feature_t_d
+etag master Last_Changed_At
+
+{
+    field ( readonly : update   ) Id, Language;
+    field ( mandatory : create ) Language;
+    // administrative fields (read only)
+    field ( readonly ) created_at, created_by, last_changed_at, last_changed_by;
+
+    factory action ( features : instance ) translate parameter ZA_ICS_TRANSLATE_DESCRIPTION [1];
+
+    update;
+    delete;
+    association _Feature { with draft; }
+}
+
+define behavior for ZI_ICS_FEATURES_EXP alias Expression
+authorization dependent by _Feature
+lock dependent by _Feature
+persistent table zdb_feature_exp
+draft table zdb_feature_e_d
+etag master Last_Changed_At
+{
+    field ( readonly ) Id, DestinationID;
+    field ( readonly, numbering : managed  ) Exp_ID;
+    field ( mandatory ) Conjunction;
+
+    validation validateExpressionParenthesis on save { field Left_Parenthesis, Right_Parenthesis; update; create; }
+    validation validateExpressionConjunctions on save { field Conjunction; update; create; }
+
+    update (precheck);
+    delete;
+
+    action ( features : instance ) create_before result [1] $self ;
+    action ( features : instance ) create_after  result [1] $self;
+
+    association _Feature {  }
+}

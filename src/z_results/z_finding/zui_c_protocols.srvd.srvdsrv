@@ -1,0 +1,11 @@
+@EndUserText.label: 'Service definition for Protocols'
+define service ZUI_C_PROTOCOLS {
+  expose ZC_PROTOCOLS                  as Findings;
+  expose ZI_ICS_DATA_EXISTANCE         as DataExistence;
+  expose I_IAMBusinessUserLogonDetails as CreatedByUser;
+  expose I_IAMBusinessUserLogonDetails as LastChangedByUser;
+  expose ZI_ICS_Employee_subgroups     as EmployeeSubgroup;
+  expose ZI_ICS_FINDING_TYPE           as FindingType;
+  expose ZI_ICS_FINDING_History        as LatestHistoryEntry;
+  expose ZC_ICS_FINDING_HISTORY        as History;
+}

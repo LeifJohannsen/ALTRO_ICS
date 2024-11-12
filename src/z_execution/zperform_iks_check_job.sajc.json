@@ -1,0 +1,31 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Perform IKS checks in background",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "className": "ZCL_PERFORM_IKS_CHECK"
+  },
+  "groups": [
+    {
+      "name": "GRP_DEF",
+      "title": "Default"
+    }
+  ],
+  "parameters": [
+    {
+      "name": "S_ABKRS",
+      "group": "GRP_DEF"
+    },
+    {
+      "name": "S_BUKRS",
+      "group": "GRP_DEF"
+    },
+    {
+      "name": "P_SIMUL",
+      "group": "GRP_DEF"
+    }
+  ]
+}

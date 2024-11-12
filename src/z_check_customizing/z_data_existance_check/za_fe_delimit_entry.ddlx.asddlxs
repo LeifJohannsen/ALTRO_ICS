@@ -1,0 +1,14 @@
+@Metadata.layer: #CORE
+annotate entity ZA_ICS_DELIMIT_ENTRY
+    with 
+{
+    @UI: {
+              lineItem:       [ { position: 10, importance: #HIGH } ]
+              ,identification: [ { position: 10 } ]
+              ,selectionField: [ { position: 10 } ]
+       }
+       
+  @EndUserText.label: 'Delimit until'
+    new_responsible_clerk;
+    
+}

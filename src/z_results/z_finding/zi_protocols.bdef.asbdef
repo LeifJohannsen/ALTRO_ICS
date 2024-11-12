@@ -1,0 +1,47 @@
+managed implementation in class zbp_i_protocols unique;
+//strict ( 2 );
+
+define behavior for ZI_PROTOCOLS alias protocols
+persistent table zics_protocols
+//lock master
+//authorization master ( instance )
+etag master last_changed_at
+lock master
+{
+
+  mapping for zics_protocols corresponding;
+
+  field ( readonly, numbering : managed  ) mykey;
+  //field ( readonly ) employeeid, findingid, findingkey, last_changed_at, furtherinformation;
+
+  //Auf die Findings sollen keinerlei direkte Aktionen durchgeführt werden können (Create, Update, delete)
+  //Das wird alles durch vordefinierte Custom Actions geschehen
+
+  action ( features : instance ) setStatusInProgress result [1] $self;
+  action ( features : instance ) setStatusOpen result [1] $self;
+  action ( features : instance ) setStatusDone result [1] $self;
+  action ( features : instance ) setResponsibleClerk parameter ZA_ICS_CHANGE_CLERK result [1] $self;
+
+//  association _History { create (features : instance); }
+  association _HistoryEntry { create; }
+//  association _History { }
+}
+
+define behavior for ZI_ICS_FINDING_History alias Historyentry
+//    implementation in class zbp_i_findinghistory unique
+persistent table zics_findinghist
+//etag dependent by _Finding
+lock dependent by _Finding
+
+{
+
+    field ( readonly : update  ) mykey;
+    field ( readonly : update ) findingid;
+    mapping for zics_findinghist corresponding;
+
+    //Auf die Findings-History sollen keinerlei direkte Aktionen durchgeführt werden können
+    //(Create, Update, delete).
+    //Das wird alles durch vordefinierte Custom Actions geschehen.
+
+    association _Finding { }
+}

@@ -1,0 +1,11 @@
+@EndUserText.label: 'Service def. for data existance check'
+define service ZUI_C_ICS_DATA_EXISTANCE {
+  expose ZC_ICS_DATA_EXISTANCE        as DataExistanceCheck;
+  expose ZI_ICS_DATASETS              as DataSets;
+  expose ZI_ICS_DESTINATIONS          as Destinations;
+  expose ZI_ICS_CATEGORY              as Categories;
+  expose ZI_ICS_FINDING_TYPE          as FindingType;
+  expose ZI_ICS_CHECK_TYPES           as CheckType;
+  expose ZI_ICS_USEINLINKED           as UseInLinked;
+  expose ZC_ICS_DATA_EXIST_CHECKTXT_2 as Text;
+}

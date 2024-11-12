@@ -1,0 +1,28 @@
+projection;
+//strict ( 2 ); //Uncomment this line in order to enable strict mode 2. The strict mode has two variants (strict(1), strict(2)) and is prerequisite to be future proof regarding syntax and to be able to release your BO.
+
+define behavior for ZC_PROTOCOLS alias Protocols
+use etag
+{
+  //Auf die Findings sollen keinerlei direkte Aktionen durchgeführt werden können (Create, Update, delete)
+  //Das wird alles durch vordefinierte Custom Actions geschehen
+
+  use action setStatusInProgress;
+  use action setStatusOpen;
+  use action setStatusDone;
+  use action setResponsibleClerk;
+
+  use association _HistoryEntry { }
+}
+
+define behavior for ZC_ICS_FINDING_HISTORY alias HistoryEntry
+use etag
+
+{
+
+    //Auf die Findings-History sollen keinerlei direkte Aktionen durchgeführt werden können
+    //(Create, Update, delete).
+    //Das wird alles durch vordefinierte Custom Actions geschehen.
+
+    use association _Finding { }
+}

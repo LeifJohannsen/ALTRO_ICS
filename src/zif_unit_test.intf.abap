@@ -1,0 +1,1 @@
+INTERFACE zif_unit_test DEFERRED PUBLIC.

@@ -1,0 +1,15 @@
+@Metadata.layer: #CORE
+annotate entity ZA_ICS_TRANSLATE_DESCRIPTION
+    with 
+{
+    @UI: {
+              lineItem:       [ { position: 10, importance: #HIGH } ]
+              ,identification: [ { position: 10 } ]
+              ,selectionField: [ { position: 10 } ]
+       }
+       
+    @Consumption.valueHelpDefinition: [{ entity : {name: 'I_Language', element: 'Language'  } }]
+    @EndUserText.label: 'Language'
+    new_language;
+    
+}

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_DTEL" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <DD04V>
+    <ROLLNAME>Z_USE_IN_LINKED_CHECK_ID</ROLLNAME>
+    <DDLANGUAGE>E</DDLANGUAGE>
+    <HEADLEN>55</HEADLEN>
+    <SCRLEN1>10</SCRLEN1>
+    <SCRLEN2>20</SCRLEN2>
+    <SCRLEN3>40</SCRLEN3>
+    <DDTEXT>Use in linked check</DDTEXT>
+    <REPTEXT>Use in combined check</REPTEXT>
+    <SCRTEXT_S>Use in...</SCRTEXT_S>
+    <SCRTEXT_M>Use in comb. check</SCRTEXT_M>
+    <SCRTEXT_L>Use in combined check</SCRTEXT_L>
+    <DTELMASTER>E</DTELMASTER>
+    <DATATYPE>NUMC</DATATYPE>
+    <LENG>000001</LENG>
+    <OUTPUTLEN>000001</OUTPUTLEN>
+    <ABAP_LANGUAGE_VERSION>5</ABAP_LANGUAGE_VERSION>
+   </DD04V>
+   <I18N_LANGS>
+    <LANGU>D</LANGU>
+   </I18N_LANGS>
+   <DD04_TEXTS>
+    <item>
+     <DDLANGUAGE>D</DDLANGUAGE>
+     <DDTEXT>Verwende in verknüpfter Prüfung</DDTEXT>
+     <REPTEXT>Verwende in verknüpfter Prüfung</REPTEXT>
+     <SCRTEXT_S>Verw. in..</SCRTEXT_S>
+     <SCRTEXT_M>Verw. in verk. Prüf.</SCRTEXT_M>
+     <SCRTEXT_L>Verwende in verknüpfter Prüfung</SCRTEXT_L>
+    </item>
+   </DD04_TEXTS>
+  </asx:values>
+ </asx:abap>
+</abapGit>

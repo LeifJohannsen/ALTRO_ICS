@@ -1,0 +1,23 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "className": "ZCL_DATASET_GRABBER"
+  },
+  "groups": [
+    {
+      "name": "GRP_DEF",
+      "title": ""
+    }
+  ],
+  "parameters": [
+    {
+      "name": "S_LANGU",
+      "group": "GRP_DEF"
+    }
+  ]
+}

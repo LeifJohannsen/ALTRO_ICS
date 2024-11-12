@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service definition for Destinations'
+define service ZUI_C_DESTINATIONS {
+  expose ZC_ICS_Destinations as Destinations;
+  expose ZI_ICS_SYSTEMTYPES  as SystemType;
+}

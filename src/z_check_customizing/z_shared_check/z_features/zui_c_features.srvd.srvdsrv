@@ -1,0 +1,12 @@
+@EndUserText.label: 'Service definition for features'
+define service ZUI_C_FEATURES {
+  expose ZC_ICS_FEATURES          as Features;
+  expose ZI_ICS_DESTINATIONS      as Destinations;
+  expose ZI_ICS_DATASETS          as Datasets;
+  expose ZI_FEATURE_NOT_OPERATION as Not_operation;
+  expose ZI_FEATURE_SIGN          as Sign;
+  expose ZI_FEATURE_OPER          as Operation;
+  expose ZI_FEATURE_CONJ          as Conjunction;
+  expose ZC_ICS_FEATURE_TEXT      as Text;
+  expose ZC_ICS_FEATURE_EXP       as Expression;
+}

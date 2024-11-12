@@ -1,0 +1,81 @@
+managed implementation in class zbp_i_ics_data_existance unique;
+
+strict;
+with draft;
+
+define behavior for ZI_ICS_DATA_EXISTANCE alias DatasetExistanceCheck
+persistent table zics_data_exist
+draft table zics_data_existd
+lock master
+total etag last_changed_at
+authorization master (instance)
+etag master last_changed_at
+
+{
+  mapping for zics_data_exist corresponding;
+
+  // semantic key is calculated in a determination
+  field ( readonly, numbering : managed  ) mykey;
+
+  // administrative fields (read only)
+  field ( readonly ) last_changed_at, last_changed_by, created_at, created_by;
+
+  // mandatory fields that are required to create a dataset existance check
+  field (readonly) findingid;
+//  field ( mandatory:create ) findingid;
+
+  field ( mandatory ) dataset, findingtypeid, categoryid, validfrom, validto;
+        //(mandatory)
+  // mandatory fields that are required to create a travel
+  field ( mandatory ) checktype, useinlinkedcheck, description, destination, featureid;
+        //(mandatory)
+
+  field ( readonly ) last_check, last_check_context;
+
+  create ( precheck );
+  update ( precheck, features : instance );
+  delete ( precheck, features : instance );
+
+  draft action ( features : instance ) Edit;
+  draft action Activate;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
+  determination setDefaultValues on modify { create; }
+
+  factory action ( features : instance ) delimitEntry parameter ZA_ICS_DELIMIT_ENTRY [1];
+
+  validation validateDates on save { field validfrom, validto; }
+
+  association _Text { create; with draft;}
+
+  event scheduleDatasetGrabber;
+
+
+}
+
+define behavior for ZI_ICS_DATA_EXIST_CHECKTXT_2 alias Text
+authorization dependent by _DataExistance
+lock dependent by _DataExistance
+persistent table zics_dataexisttx
+draft table zics_dataexsttxd
+etag master DataExistanceLastChangedAt
+
+{
+    field ( readonly : update   ) DataExistanceUUID;
+//    mapping for zics_dataexisttx corresponding;
+    mapping for zics_dataexisttx {
+        DataExistanceUUID            = mykey;
+        DataExistanceLanguage        = language;
+        DataExistanceDescription     = dataexist_desc;
+        DataExistanceLongDescription = dataexist_long_desc;
+        DataExistanceLastChangedAt   = last_changed_at;
+    }
+
+    update;
+    delete;
+    association _DataExistance { with draft; }
+
+    factory action ( features : instance ) translate parameter ZA_ICS_TRANSLATE_DESCRIPTION [1];
+}

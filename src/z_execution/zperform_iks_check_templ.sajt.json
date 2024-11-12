@@ -1,0 +1,41 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Perform IKS checks in background",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "catalogName": "ZPERFORM_IKS_CHECK_JOB"
+  },
+  "parameters": {
+    "singleValueParameters": [
+      {
+        "name": "P_SIMUL",
+        "value": "X"
+      }
+    ],
+    "valueRangesParameters": [
+      {
+        "name": "S_ABKRS",
+        "valueRanges": [
+          {
+            "sign": "include",
+            "option": "equals",
+            "low": ""
+          }
+        ]
+      },
+      {
+        "name": "S_BUKRS",
+        "valueRanges": [
+          {
+            "sign": "include",
+            "option": "equals",
+            "low": ""
+          }
+        ]
+      }
+    ]
+  }
+}

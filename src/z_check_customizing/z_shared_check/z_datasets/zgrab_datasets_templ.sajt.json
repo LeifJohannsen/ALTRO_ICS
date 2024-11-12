@@ -1,0 +1,30 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "catalogName": "ZGRAB_DATASETS_JOB"
+  },
+  "parameters": {
+    "valueRangesParameters": [
+      {
+        "name": "S_LANGU",
+        "valueRanges": [
+          {
+            "sign": "include",
+            "option": "equals",
+            "low": "D"
+          },
+          {
+            "sign": "include",
+            "option": "equals",
+            "low": "E"
+          }
+        ]
+      }
+    ]
+  }
+}

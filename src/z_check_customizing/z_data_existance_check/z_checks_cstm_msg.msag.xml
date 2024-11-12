@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_MSAG" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <T100A>
+    <ARBGB>Z_CHECKS_CSTM_MSG</ARBGB>
+    <MASTERLANG>D</MASTERLANG>
+    <STEXT>Messages from Checks-Customizing</STEXT>
+   </T100A>
+   <T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>Z_CHECKS_CSTM_MSG</ARBGB>
+     <MSGNR>001</MSGNR>
+     <TEXT>Valid to customizing &amp;1 is after the calculated maximum date &amp;2</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>Z_CHECKS_CSTM_MSG</ARBGB>
+     <MSGNR>002</MSGNR>
+     <TEXT>Valid to customizing &amp;1 is before the calculated minimum date &amp;2</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>Z_CHECKS_CSTM_MSG</ARBGB>
+     <MSGNR>003</MSGNR>
+     <TEXT>Valid from customizing &amp;1 is after the calculated maximum date &amp;2</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>Z_CHECKS_CSTM_MSG</ARBGB>
+     <MSGNR>004</MSGNR>
+     <TEXT>Valid from customizing &amp;1 is before the calculated minimum date &amp;2</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>Z_CHECKS_CSTM_MSG</ARBGB>
+     <MSGNR>005</MSGNR>
+     <TEXT>Customizing overlaps with existing customizing.</TEXT>
+    </T100>
+   </T100>
+   <I18N_LANGS>
+    <LANGU>D</LANGU>
+   </I18N_LANGS>
+   <T100T>
+    <T100T>
+     <SPRSL>D</SPRSL>
+     <ARBGB>Z_CHECKS_CSTM_MSG</ARBGB>
+     <STEXT>Messages from Checks-Customizing</STEXT>
+    </T100T>
+   </T100T>
+   <T100_TEXTS>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>001</MSGNR>
+     <TEXT>Gültig bis des Customizings &amp;1 liegt nach dem errechneten Maximaldatum &amp;2</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>002</MSGNR>
+     <TEXT>Gültig bis des Customizings &amp;1 liegt vor dem errechneten Mindestdatum &amp;2</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>003</MSGNR>
+     <TEXT>Gültig von des Customizings &amp;1 liegt nach dem errechneten Maximaldatum &amp;2</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>004</MSGNR>
+     <TEXT>Gültig von des Customizings &amp;1 liegt vor dem errechneten Mindestdatum &amp;2</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>005</MSGNR>
+     <TEXT>Customizing überlappt sich mit bereits bestehendem Customizing.</TEXT>
+    </item>
+   </T100_TEXTS>
+  </asx:values>
+ </asx:abap>
+</abapGit>

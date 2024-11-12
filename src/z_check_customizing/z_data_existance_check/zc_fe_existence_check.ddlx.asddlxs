@@ -1,0 +1,350 @@
+@Metadata.layer: #CORE
+
+@UI: 
+{
+ headerInfo: 
+    { 
+    typeImageUrl: 'https://centricnetherlandsiit.sharepoint.com/:i:/r/sites/SAPHCMAddOnSoftwareDE/Shared%20Documents/Data_Cosmos.png?csf=1&web=1&e=brdhmg',
+    typeName: 'Dateset existence check',
+    typeNamePlural: 'Dateset existence checks', 
+    title: 
+        { 
+        type: #STANDARD,
+        value: 'LocalizedDescription'
+        }
+      }
+      ,
+ presentationVariant: [
+    { 
+        sortOrder: [
+            { 
+                by: 'Finding_ID',
+                direction: #ASC
+            },
+            { 
+                by: 'Valid_From',
+                direction: #ASC 
+            }
+        ],
+    visualizations: [{type: #AS_LINEITEM }]
+    }
+ ],
+ lineItem: [{ criticality: 'criticality' }]
+ 
+}
+
+@Search.searchable: true
+
+annotate view ZC_ICS_DATA_EXISTANCE
+    with
+{   
+    
+    @UI.facet: [  {
+                    id: 'DataExistanceHeader1',
+                    purpose: #HEADER,
+                    type: #FIELDGROUP_REFERENCE,
+                    position: 10,
+                    label: 'Administrative information',
+                    targetQualifier: 'headerInformation1'
+                },
+                   { 
+                     id:              'COLLFAC1',
+                     type:            #COLLECTION,
+                     label:           'General Information',
+                     position:        10 
+                   },
+                   { 
+                     id:              'COLLFAC2',
+                     type:            #COLLECTION,
+                     label:           'Dataset Selection',
+                     position:        20 
+                   },
+                   { 
+                     id:              'COLLFAC3',
+                     type:            #COLLECTION,
+                     label:           'Check Settings',
+                     position:        30 
+                   },
+                   { 
+                     id:              'TRANSLATIONS',
+                     type:            #LINEITEM_REFERENCE,
+                     label:           'Translations',
+                     position:        40,
+                     targetElement:  '_Text' 
+                   },
+                   { parentId: 'COLLFAC1',
+                     type: #FIELDGROUP_REFERENCE,
+                     position: 10,
+                     targetQualifier: 'GENERAL'
+                   },
+                   { parentId: 'COLLFAC2',
+                     type: #FIELDGROUP_REFERENCE,
+                     position: 10,
+                     targetQualifier: 'DATASETSELECTION'
+                   },
+                   { parentId: 'COLLFAC3',
+                     type: #FIELDGROUP_REFERENCE,
+                     position: 10,
+                     targetQualifier: 'CHECKSETTINGS'
+                   },
+                   { 
+                     id:              'AdminInfo',
+                     type:            #COLLECTION,
+                     label:           'Administrative Information',
+                     position:        50 
+                 },
+                     {
+                       id: 'LastCheckInformation',
+                       purpose: #STANDARD,
+                       type: #FIELDGROUP_REFERENCE,
+                       parentId: 'AdminInfo',
+                       label: 'Last check information',
+                       position: 10,
+                       targetQualifier: 'LastCheckAdminGroup'
+                     },
+                     {
+                       id: 'CreatedInformation',
+                       purpose: #STANDARD,
+                       type: #FIELDGROUP_REFERENCE,
+                       parentId: 'AdminInfo',
+                       label: 'Created information',
+                       position: 20,
+                       targetQualifier: 'CreatedAdminGroup'
+                     },
+                     {
+                       id: 'LastChangedInformation',
+                       purpose: #STANDARD,
+                       type: #FIELDGROUP_REFERENCE,
+                       parentId: 'AdminInfo',
+                       label: 'Last changed information',
+                       position: 30,
+                       targetQualifier: 'LastChangedAdminGroup'
+                     }
+                 ]
+    @UI.lineItem: [
+                        {
+                            label: 'Delimit',
+                            dataAction: 'delimitEntry',
+                            type: #FOR_ACTION,
+                            position: 99
+                        }
+                  ]
+    @UI.identification: [{
+                            label: 'Delimit',
+                            dataAction: 'delimitEntry',
+                            type: #FOR_ACTION,
+                            position: 99
+                        }]
+
+    @UI.hidden: true
+    Finding_UUID;
+    
+    @UI: {
+           lineItem:       [ { position: 10, importance: #HIGH } ],
+           identification: [ { position: 10 } ],
+           fieldGroup:     [ { position: 10, qualifier: 'GENERAL' }]
+         }
+    @EndUserText.label: 'Finding ID'
+  
+    Finding_ID;
+    
+    @UI: {
+          lineItem:       [ { position: 20, importance: #MEDIUM } ],
+          identification: [ { position: 20 } ],
+          fieldGroup:     [ { position: 20, qualifier: 'GENERAL' }]
+          }
+          
+   Valid_From;
+   
+   @UI: {
+          lineItem:       [ { position: 21, importance: #MEDIUM } ],
+          identification: [ { position: 21 } ],
+          fieldGroup:     [ { position: 30, qualifier: 'GENERAL' }]
+          }     
+   valid_To;
+   
+   @UI: {
+          lineItem:       [ { position: 40, importance: #MEDIUM } ],
+          identification: [ { position: 40 } ],
+          selectionField: [ { position: 40 } ], 
+          fieldGroup:     [ { position: 40, qualifier: 'GENERAL' }]
+          }
+   @Consumption.valueHelpDefinition: [{ entity : {name: 'ZC_ICS_CATEGORIES', element: 'CategoryID'  } }]
+   @UI.textArrangement: #TEXT_ONLY
+   @EndUserText.label: 'Category'
+   Category;
+   
+   @Search.defaultSearchElement: true
+   @UI.hidden: true
+   Category_Description;
+   
+   @UI: {
+          lineItem:       [ { position: 50, importance: #MEDIUM, criticality: 'FindingTypeCriticality' } ],
+          identification: [ { position: 50 } ],
+          selectionField: [ { position: 50 } ], 
+          fieldGroup:     [ { position: 50, qualifier: 'GENERAL', criticality: 'FindingTypeCriticality', criticalityRepresentation: #WITHOUT_ICON}]
+          }
+   @Consumption.valueHelpDefinition: [{ entity : {name: 'ZC_ICS_FINDING_TYPES', element: 'FindingTypeID'  } }]
+   @UI.textArrangement: #TEXT_ONLY
+   @EndUserText.label: 'Finding type'
+   FindingType;
+   
+   @Search.defaultSearchElement: true
+   @UI.hidden: true
+   FindingType_Description;
+   
+   @UI: {
+          lineItem:       [ { position: 30, importance: #MEDIUM } ],
+          identification: [ { position: 30 } ],
+          selectionField: [ { position: 30 } ], 
+          fieldGroup:     [ { position: 10, qualifier: 'DATASETSELECTION' }]
+          }
+   @Consumption.valueHelpDefinition: [{ entity : {name: 'ZC_ICS_Destinations', element: 'DestinationID'  } }]
+   @UI.textArrangement: #TEXT_ONLY
+   @Search.defaultSearchElement: true
+   @EndUserText.label: 'Destination'
+   DestinationID;
+   
+   @UI: {
+          lineItem:       [ { position: 35, importance: #MEDIUM } ],
+          identification: [ { position: 35 } ],
+          selectionField: [ { position: 35 } ], 
+          fieldGroup:     [ { position: 15, qualifier: 'DATASETSELECTION' }]
+          }
+   
+   @Consumption.valueHelpDefinition: [
+      { entity: 
+        {
+            name: 'ZCE_ICS_FEATURES_VH',
+            
+            element: 'FeatureID'
+        }
+        ,
+        additionalBinding: 
+            [
+                { 
+                localElement: 'DestinationID',
+                element: 'Destinationid'
+                }
+                ,
+                {
+                localElement: 'Valid_From',
+                element: 'ValidFrom',
+                usage: #FILTER
+                }
+                ,
+                {
+                localElement: 'valid_To',
+                element: 'ValidTo',
+                usage: #FILTER
+                }
+                
+            ]
+      }
+      ]
+   
+   @EndUserText.label: 'Grouping'
+   Feature;
+   
+   @UI: {
+          lineItem:       [ { position: 40, importance: #MEDIUM } ],
+          identification: [ { position: 40 } ], 
+          fieldGroup:     [ { position: 20, qualifier: 'DATASETSELECTION' } ]
+           }
+      
+      @Consumption.valueHelpDefinition: [
+      { entity: 
+        {
+            name: 'ZC_ICS_DATASETS',
+            
+            element: 'DatasetID'
+        },
+        additionalBinding: 
+            [
+                { 
+                localElement: 'DestinationID',
+                element: 'DestinationID' 
+                }
+            ]
+      }
+      ]
+   @Search.defaultSearchElement: true
+   
+   DataSet;
+   
+   @UI: {
+          lineItem:       [ { position: 50, importance: #LOW } ],
+          identification: [ { position: 50 } ],
+          selectionField: [ { position: 50 } ],
+          fieldGroup:     [ { position: 10, qualifier: 'CHECKSETTINGS' } ]
+           }
+          
+      @Consumption.valueHelpDefinition: 
+      [
+          { entity : 
+            {
+                name: 'ZC_ICS_CHECK_TYPES',
+                element: 'CheckTypeID'
+            }
+          }
+      ]
+   @Search.defaultSearchElement: true
+   @UI.textArrangement: #TEXT_ONLY
+   Check_Type;
+   
+   @UI: {
+          lineItem:       [ { position: 60, importance: #LOW } ],
+          identification: [ { position: 60 } ],
+          selectionField: [ { position: 60 } ],
+          fieldGroup:     [ { position: 20, qualifier: 'CHECKSETTINGS' } ]
+           }
+   @Consumption.valueHelpDefinition: [{ entity : {name: 'ZC_ICS_USEINLINKED', element: 'UseInLinkedID'  } }]
+   Use_In_Linked_Check;
+   
+   @EndUserText.label: 'Use in linked check Description'
+   Use_In_Linked_Check_Desc;
+   
+   @UI: {
+          lineItem:       [ { position: 15, importance: #HIGH } ],
+          identification: [ { position: 15 } ],
+          selectionField: [ { position: 15 } ]
+            }
+  @EndUserText.label: 'Description'
+  @Search.defaultSearchElement: true
+  LocalizedDescription;
+  
+  @UI.fieldGroup: [{ qualifier: 'LastCheckAdminGroup', position: 20 }]
+  LastCheckContext;
+  
+  @UI.fieldGroup: [{ qualifier: 'LastCheckAdminGroup', position: 10 }]
+  @EndUserText.label: 'Last Check at'
+  LastCheck;
+  
+  @UI.dataPoint: { qualifier: 'LastChangedBy', title: 'Last changed by'}
+  @UI.fieldGroup: [{ qualifier: 'headerInformation1', position: 10 },
+                   { qualifier: 'LastChangedAdminGroup', position: 10 }]
+  @EndUserText.label: 'Last change by'
+  LastChangedBy;
+  
+  @UI.dataPoint: { qualifier: 'LastChangedAt', title: 'Last changed at'}
+  @UI.fieldGroup: [{ qualifier: 'headerInformation1', position: 20 },
+                   { qualifier: 'LastChangedAdminGroup', position: 20 }]
+  @EndUserText.label: 'Last change at'
+  LastChangedAt;
+  
+  @UI.dataPoint: { qualifier: 'CreatedBy', title: 'Created by'}
+  @UI.fieldGroup: [{ qualifier: 'headerInformation1', position: 30 },
+                   { qualifier: 'CreatedAdminGroup', position: 10 }]
+  @EndUserText.label: 'Created by'
+  CreatedBy;
+  
+  @UI.dataPoint: { qualifier: 'CreatedAt', title: 'Created at'}
+  @UI.fieldGroup: [{ qualifier: 'headerInformation1', position: 40 },
+                   { qualifier: 'CreatedAdminGroup', position: 20 }]
+  @EndUserText.label: 'Created at'
+  CreatedAt;
+  
+  @UI.hidden: true
+  criticality;    
+    
+}

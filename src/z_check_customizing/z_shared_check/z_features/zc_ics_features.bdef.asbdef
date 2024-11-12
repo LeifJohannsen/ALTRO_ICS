@@ -1,0 +1,47 @@
+projection;
+strict;
+use draft;
+
+define behavior for ZC_ICS_FEATURES alias feature
+use etag
+{
+  use create;
+  use update;
+  use delete;
+
+  use action Edit;
+  use action Activate;
+  use action Resume;
+  use action Discard;
+  use action Prepare;
+
+  use action delimitEntry;
+
+  use association _Text { create; with draft; }
+  use association _Expression { create; with draft; }
+}
+
+define behavior for ZC_ICS_FEATURE_TEXT alias Text
+use etag
+
+{
+    use update;
+    use delete;
+
+    use action translate;
+
+    use association _Feature { }
+}
+
+define behavior for ZC_ICS_FEATURE_EXP alias Expression
+use etag
+
+{
+    use update;
+    use delete;
+
+    use action create_before;
+    use action create_after;
+
+    use association _Feature { with draft; }
+}
